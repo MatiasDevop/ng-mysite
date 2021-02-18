@@ -27,21 +27,23 @@ export class AppComponent implements OnInit{
   }
  
   ngOnInit() {
-    this.rowData = this.http.get('https://www.ag-grid.com/example-assets/small-row-data.json');
+    
+    this.rowData = this.http.get('https://www.ag-grid.com/example-assets/row-data.json');
+    // this.rowData = this.http.get('https://www.ag-grid.com/example-assets/small-row-data.json');
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-  }
-  getSelectedRows() {
-    const selectedNodes = this.gridApi.getSelectedNodes();
-    console.log(selectedNodes);
-    const selectedData = selectedNodes.map(node => node.data );
-    const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ');
+  // onGridReady(params) {
+  //   this.gridApi = params.api;
+  //   this.gridColumnApi = params.columnApi;
+  // }
+  // getSelectedRows() {
+  //   const selectedNodes = this.gridApi.getSelectedNodes();
+  //   console.log(selectedNodes);
+  //   const selectedData = selectedNodes.map(node => node.data );
+  //   const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ');
 
-    alert(`Selected nodes: ${selectedDataStringPresentation}`);
-  }
+  //   alert(`Selected nodes: ${selectedDataStringPresentation}`);
+  // }
 //   rowData = [
 //     { make: 'Toyota', model: 'Celica', price: 35000 },
 //     { make: 'Ford', model: 'Mondeo', price: 32000 },
