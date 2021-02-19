@@ -31,7 +31,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:5000"],
+        allowedDomains: ["localhost:5001"],
+        disallowedRoutes:[]
         //blacklistedRoutes:[]
       }
     }),

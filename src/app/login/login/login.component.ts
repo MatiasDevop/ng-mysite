@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.http.post("https://localhost:5001/api/auth/login", credentials)
         .subscribe(response =>{
           const token = (<any>response).token;
+          localStorage.setItem("jwt", token);
           this.invalidLogin = false;
           this.router.navigate(["/"]);
         }, err =>{
