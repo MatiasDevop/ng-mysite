@@ -33,7 +33,6 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
         allowedDomains: ["localhost:5001"],
         disallowedRoutes:[]
-        //blacklistedRoutes:[]
       }
     }),
     AgGridModule.withComponents([])
