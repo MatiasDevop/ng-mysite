@@ -6,25 +6,23 @@
 # This workflow will install Deno and run tests across stable and nightly builds on Windows, Ubuntu and macOS.
 # For more information see: https://github.com/denolib/setup-deno
 
-name: CI Angular
+name: Build and Deploy
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1 #this will install Node and npm on Ubuntu
+    - uses: actions/checkout@v2
+    - name: All things angular
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@[version] ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
       with:
-        node-version: '12.x'
-    - run: npm install
-    - run: npm install -g @angular/cli > /dev/null
-    - run: ng build --prod --output-path=dist --base-href="https://matiasdevop.github.io/ng-mysite/"
-    - name: Publish generated content to GitHub Pages
-      uses: tsunematsu21/actions-publish-gh-pages@v1.0.1
-      with:
-          dir: dist/myaggrid-app
-          branch: gh-pages
-          token: ${{ secrets.ACCESS_TOKEN }}
+        github_access_token: ${{ secrets.ACCESS_TOKEN }} # see the Configuration section for how you can create secrets
+        build_configuration: staging # The build environment for the app. please look configurations in your angular.json
+        base_href: /ng-mysite/   # make sure this corresponds to https://<your_username>.github.io/<base_href>/
+        deploy_branch: gh-pages # The branch the action should deploy to.
+        angular_dist_build_folder: dist/ng-mysite # The folder where your project is supposed to be after running ng build by the action.
